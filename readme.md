@@ -11,9 +11,9 @@ The Intel's **oneAPI toolkit** need to be installed including Base Toolkit and H
 
 ## Program description
 
-The library is open source and freely available. It contains 3 folders:
+This DC3DPAFEM is open source and freely available. It contains 3 folders:
 
-* _contrib_: this folder shall contain the needed third-party libraries. The open source finite element library MFEM, partitioning finite element meshes program METIS, and high performance preconditioners and solvers library HYPRE were used in this code. The MFEM can be available on the web: https://github.com/mfem/mfem, with the METIS available in https://github.com/KarypisLab/METIS , ans with the HYPRE available in https://github.com/hypre-space/hypre. Used libraries and corresponding versions are __hypre-2.19.0__, __metis-5.1.0__, and __mfem-4.5__.
+* _contrib_: this folder shall contain needed third-party libraries. The open source finite element library MFEM, partitioning finite element meshes program METIS, and high performance preconditioners and solvers library HYPRE were used in this code. The MFEM can be available on the web: https://github.com/mfem/mfem, with the METIS available in https://github.com/KarypisLab/METIS , ans with the HYPRE available in https://github.com/hypre-space/hypre. Tested libraries and corresponding versions are __hypre-2.19.0__, __metis-5.1.0__, and __mfem-4.5__.
   * *Installation for HYPRE*
     ```
     tar -zxvf hypre-2.19.0.tar.gz
@@ -41,17 +41,18 @@ The library is open source and freely available. It contains 3 folders:
     make parallel -j 4  MPICXX=${mpicxx} MFEM_USE_MPI=YES MFEM_USE_METIS_5=YES METIS_DIR=@MFEM_DIR@/../metis-5.1.0 
     ```
 - _examples_: this folder contains two examples. The first example contains the Accuracy verification, Scalability test, and Robunstness test. The second example contains the Consistence test and Effect of topography and anisotropic test. Note that in the Consistency test of the second model, the model file mountainvalley.tar.xz need to be decompressed and restored as a .msh file. We show the configuration files in the Accuracy verification test, and the other tests are similar. It contains the following files:
-  * *makefile* *run.sh* 
-    These two files are used to compile the code to produce the executable file DC3D.
 
   * *model.config*
     This file contains all the configuration options required by the DC3DPAFEM program. Commonly used ones are, for example, electrode configuration file name, resistivity parameter file name, number of adaptive refining, indication factor, grid file name, and so on.
   * *sigma.file*
     This file describes how many regions exist and the six separate parameters corresponding to the resistivity tensor for each region
   * *survey.input*
-    This file describes the arrangement of the electrodes. The two string in the first line indicate the number of measurements and the pole-pole configuration, respectively. Each subsequent line indicates the coordinates of the source and measurement electrodes.
+    This file describes the arrangement of the electrodes. The two numbers in the first line indicate the number of measurements and the pole-pole configuration, respectively. Each subsequent line denotes the coordinates of the source and measurement electrodes.
   * *twolay.msh*
     This file describes the computed 3D model.
+
+  * *makefile*, *run.sh* 
+    The former is used to compile the program to produce the executable file DC3D. The latter is used to run the program.
 
 - _src_: this folder contains all sources file (including .cpp and .h).
 
@@ -67,6 +68,7 @@ cd DC3DPAFEM/examples/two-layer
 ```
 Copy all files from folder Accuracy_verification to current directory
 ```
+cp Accuracy_verification/* .
 sh run.sh
 ```
 The resulting files are saved in the **solutions** folder, where solution.x represents the potential and apparent resistivity results.
