@@ -91,7 +91,7 @@ E-mail: zhengguang-liu@outlook.com
 
 * **Hongbo Yao**
 Macau lnstitute of Space Technology and Application, Taipa, Macao, 999078, China.
-hongbo.yao@outlook.com
+E-mail: hongbo.yao@outlook.com
 
 * **Jingtian Tang**
 School of Geosciences and Info-Physics, Central South University, Changsha, 410083, Hunan, China.
