@@ -1,5 +1,16 @@
 
 
+/*
+ * @Description: This .cpp file contains the actual implementations of some functions declared in the error_estimators.h header file.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ */
+
+
+// Copyright (c) 2023.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
+
+
 #include "error_estimators.h"
 #include "em.h"
 
@@ -33,7 +44,7 @@ double nJEstimator::n_dot_J(bool if_loc1, bool if_shared_tet2,
                             const IntegrationPoint &ip, ParGridFunction *u) {
   int ndof = tet_fe->GetDof();
   int dim = tet_fe->GetDim();
-  myassert(dim == 3);
+  assert(dim == 3);
 
   // unit normal with Jacobian
   Vector normalJ(dim);
@@ -42,8 +53,7 @@ double nJEstimator::n_dot_J(bool if_loc1, bool if_shared_tet2,
   // unit normal
   Vector normal(dim);
   normal = 0.0;
-  normal.Set(1.0 / normalJ.Norml2(),
-             normalJ);
+  normal.Set(1.0 / normalJ.Norml2(), normalJ);
   IntegrationPoint tet_ip;
   if (if_loc1) {
     face_elem_trans->Loc1.Transform(ip, tet_ip);
@@ -51,7 +61,7 @@ double nJEstimator::n_dot_J(bool if_loc1, bool if_shared_tet2,
     face_elem_trans->Loc2.Transform(ip, tet_ip);
   }
   tet_trans->SetIntPoint(&tet_ip);
-  DenseMatrix tet_shape(ndof, dim); // 4*3
+  DenseMatrix tet_shape(ndof, dim);              // 4*3
   tet_fe->CalcPhysDShape(*tet_trans, tet_shape); // delta U
   Array<int> tet_vdofs;
   Vector tU;
@@ -59,12 +69,12 @@ double nJEstimator::n_dot_J(bool if_loc1, bool if_shared_tet2,
     pfes->GetElementVDofs(tet_id, tet_vdofs);
     u->GetSubVector(tet_vdofs, tU);
   } else {
-    pfes->GetFaceNbrElementVDofs(tet_id, tet_vdofs); 
-    u->FaceNbrData().GetSubVector(tet_vdofs, tU);    
+    pfes->GetFaceNbrElementVDofs(tet_id, tet_vdofs);
+    u->FaceNbrData().GetSubVector(tet_vdofs, tU);
   }
 
-  myassert(tet_vdofs.Size() == ndof);
-  myassert(tU.Size() == ndof);
+  assert(tet_vdofs.Size() == ndof);
+  assert(tU.Size() == ndof);
   Vector tempE(3);
   tempE = 0.0;
   for (int j = 0; j < ndof; j++) {
@@ -79,7 +89,7 @@ double nJEstimator::n_dot_J(bool if_loc1, bool if_shared_tet2,
   tet_cond.AddMult(tempE, tempJe);
 
   double nJ = 0.0;
-  nJ = normal * tempJe; 
+  nJ = normal * tempJe;
   return nJ;
 }
 
@@ -106,7 +116,7 @@ void nJEstimator::compute_face_err(bool if_shared_tet2,
     tet1_fe = pfes->GetFE(tet1_id);
     tet1_trans = face_elem_trans->Elem1;
     tet2_id = face_elem_trans->Elem2No - pmesh->GetNE(); // BE CAREFUL!
-    tet2_fe = pfes->GetFaceNbrFE(tet2_id); // BE CAREFUL!
+    tet2_fe = pfes->GetFaceNbrFE(tet2_id);               // BE CAREFUL!
     tet2_trans = face_elem_trans->Elem2;
   }
   const IntegrationRule *face_ir =
@@ -115,7 +125,7 @@ void nJEstimator::compute_face_err(bool if_shared_tet2,
   for (int q = 0; q < face_ir->GetNPoints(); ++q) {
     const IntegrationPoint &ip = face_ir->IntPoint(q);
     face_trans->SetIntPoint(&ip);
-    double WJ = face_trans->Weight() * ip.weight; 
+    double WJ = face_trans->Weight() * ip.weight;
 
     // calculate nJu and nJw in face's tet1
     double nJ_tet1_u = 0.0;
@@ -182,11 +192,7 @@ void nJEstimator::get_error_estimates(Vector &errors) {
     compute_face_err(if_shared_tet2, face_elem_trans, face_err_u, face_err_w);
     double elem_error_face = 0.0;
     for (int s = 0; s < para_handler->source_number; s++) {
-      if (para_handler->if_solve_dual == "true") {
-        elem_error_face += std::sqrt(face_err_u[s]) * std::sqrt(face_err_w);
-      } else {
-        elem_error_face += std::sqrt(face_err_u[s]);
-      }
+      elem_error_face += std::sqrt(face_err_u[s]) * std::sqrt(face_err_w);
     }
     errors(tet1_id) += elem_error_face;
     errors(tet2_id) += elem_error_face;
@@ -201,8 +207,7 @@ void nJEstimator::get_error_estimates(Vector &errors) {
     int tet1_id = face_elem_trans->Elem1No; // local element
 
     double face_err_w = 0.0;
-    double
-        face_err_u[para_handler->source_number]; 
+    double face_err_u[para_handler->source_number];
     for (int i = 0; i < para_handler->source_number; i++) {
       face_err_u[i] = 0.0;
     }
@@ -214,11 +219,7 @@ void nJEstimator::get_error_estimates(Vector &errors) {
 
     // MPI process will take care of tet2_id
     for (int s = 0; s < para_handler->source_number; s++) {
-      if (para_handler->if_solve_dual == "true") {
-        elem_error_face += std::sqrt(face_err_u[s]) * std::sqrt(face_err_w);
-      } else {
-        elem_error_face += std::sqrt(face_err_u[s]);
-      }
+      elem_error_face += std::sqrt(face_err_u[s]) * std::sqrt(face_err_w);
     }
     errors(tet1_id) += elem_error_face;
   } // loop all shared faces done

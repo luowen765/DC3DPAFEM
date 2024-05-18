@@ -1,18 +1,15 @@
 
 
-// Copyright (c) 2023.
-// This file is part of the 3DDCAF program. 3DDCAF is free software, you can
-// redistribute it and/or modify it under the terms of the BSD-3 license. See
-// file LICENSE for details.
 
 /*
- * @Description:
-The following classes are the direct copies and modifies of MFEM's classes
-in fem/coefficient.hpp. I just did a minor modifications to compute different
-coeffients for assembling equations. For more information and source code
-availability, please visit https://github.com/luowen765/3DDCAF.
- * @Author: Lewen liu; Zhengguang liu; Hongbo Yao.
+ * @Description: The following classes are the direct copies and modifies of MFEM's classes in fem/coefficient.hpp. I just did a minor modifications to compute different coeffients for assembling equations. These classes are called by class GOAFEM in goafem.h.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
  */
+
+// Copyright (c) 2023.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
+
 
 #ifndef MFEM_COEFFICIENTS_H
 #define MFEM_COEFFICIENTS_H

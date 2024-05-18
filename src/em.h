@@ -1,13 +1,17 @@
+/*
+ * @Description: The namespace of the package DC3DPAFEM includes a variety of public functions and variables.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ */
+
 
 // Copyright (c) 2023.
-// This file is part of the 3DDCAF program. 3DDCAF is free software, you can redistribute it and/or modify it under the terms of the BSD-3 license. See file LICENSE for details.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
 
-/*
- * @Description:
-  Simple namespace for EM modeling. For more
-information and source code availability, please visit https://github.com/luowen765/3DDCAF.
- * @Author: Lewen liu; Zhengguang liu; Hongbo Yao.
- */
+
+
+
+// 工具函数 和公共变量
 
 #ifndef _EM_H
 #define _EM_H
@@ -31,53 +35,6 @@ static const double TOLERANCE = 1e-6;
 } // namespace EM
 using namespace EM;
 
-/* ----------------Basic and common function----------------------- */
-// customize assert function for replacing assert()---------------------start
-#define MY_ENABLE_ASSERT
-void static assert_fail(const char *file, int line, const char *func,
-                        const char *expr, const std::string &msg) {
-  (void)file;
-  (void)line;
-  (void)func;
-  (void)expr;
-  (void)msg;
-  std::string err_msg = std::string("Assertion fails:") + expr +
-                        ", message:" + msg + ", at " + file + ":" +
-                        std::to_string(line) + ":" + func;
-  std::cout << err_msg << std::endl;
-  std::terminate();
-}
-
-#ifdef MY_ENABLE_ASSERT
-#define myassert(expr)                                                         \
-  do {                                                                         \
-    if (!(expr)) {                                                             \
-      assert_fail(__FILE__, __LINE__, __func__, #expr, "");                    \
-    }                                                                          \
-  } while (0)
-
-#define MY_ASSERT_EQ(a, b)                                                     \
-  do {                                                                         \
-    using std::to_string;                                                      \
-    if ((a) != (b)) {                                                          \
-      assert_fail(__FILE__, __LINE__, __func__, #a " == " #b,                  \
-                  std::to_string(a) + " != " + std::to_string(b));             \
-    }                                                                          \
-  } while (0)
-
-#define MY_ASSERT_NE(a, b)                                                     \
-  do {                                                                         \
-    using std::to_string;                                                      \
-    if ((a) == (b)) {                                                          \
-      assert_fail(__FILE__, __LINE__, __func__, #a " == " #b,                  \
-                  std::to_string(a) + " != " + std::to_string(b));             \
-    }                                                                          \
-  } while (0)
-#else
-#define MY_ASSERT(expr) (void)0
-#define MY_ASSERT_EQ(expr) (void)0
-#define MY_ASSERT_NE(expr) (void)0
-#endif
 
 inline void throwError(const std::string &errString) {
   std::cerr << errString << std::endl;

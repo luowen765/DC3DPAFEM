@@ -1,4 +1,14 @@
 
+/*
+ * @Description: This .cpp file contains the actual implementations of some functions declared in the post.h header file.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ */
+
+
+// Copyright (c) 2023.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
+
 #include "post.h"
 #include "em.h"
 #include <algorithm>
@@ -26,7 +36,7 @@ void Post::main_post_process(int rank, ParaHandler *para_handler,
     // Find elements which contain sites
     para_handler->find_point_tets(pmesh, para_handler->sites[i],
                                   local_sites_tets[i],
-                                  para_handler->find_points_by);
+                                  "FindPoints");
   }
   // compute Up of measurements
   this->post_process(cond_att, sigma0);
@@ -69,7 +79,7 @@ void Post::post_process(std::vector<DenseMatrix> &cond_att,
 
   for (int k = 0; k < para_handler->source_number; k++) {
     int nsite = para_handler->sites[k].size();
-    myassert(sigma0.size() == para_handler->source_number);
+    assert(sigma0.size() == para_handler->source_number);
     local_Up[k].SetSize(nsite);
     local_Up[k] = 0.0;
     if (para_handler->if_compute_E_J == "true") {
@@ -133,9 +143,9 @@ void Post::post_process(std::vector<DenseMatrix> &cond_att,
             std::cout << "pi: " << std::endl;
             pi.Print();
           }
-          myassert(!equalVector(pt, pi));
+          assert(!equalVector(pt, pi));
           gradient_U_i_s(pt, pi, sigma0[k], deltaUs);
-          myassert(Ex[k].Size() != 0);
+          assert(Ex[k].Size() != 0);
           Ex[k][i] = -1.0 * (deltaUs(0) + tempE(0));
           Ey[k][i] = -1.0 * (deltaUs(1) + tempE(1));
           Ez[k][i] = -1.0 * (deltaUs(2) + tempE(2));
@@ -153,7 +163,7 @@ void Post::post_process(std::vector<DenseMatrix> &cond_att,
         }
 
       } else {
-        myassert(local_Up[k][i] == 0.0);
+        assert(local_Up[k][i] == 0.0);
       }
     }
   }
@@ -220,6 +230,29 @@ void Post::main_save_local_mesh(std::string amr_, int rank, Meshplus *pmesh,
                                 std::vector<DenseMatrix> &att_cond) {
 
   MPI_Barrier(MPI_COMM_WORLD);
+
+  // save the mesh as .vtk file
+  std::ostringstream vtk_name;
+  // vtk_name << fn << "/" << amr_ << "/DC3D_mesh_cond" << std::setfill('0')
+  //          << std::setw(4) << rank << ".vtk";
+  vtk_name << "solutions/"
+           << "cond" << std::setfill('0') << std::setw(2) << rank << "." <<
+           amr_
+           << ".vtk";
+  Vector local_cond(pmesh->GetNE());
+  local_cond = 0.0;
+  for (int i = 0; i < pmesh->GetNE(); i++) {
+    DenseMatrix cond_i = att_cond[pmesh->GetAttribute(i) - 1];
+    local_cond(i) = (cond_i(0, 0) + cond_i(0, 1) + cond_i(0, 2) + cond_i(1,
+    0) +
+                     cond_i(1, 1) + cond_i(1, 2) + cond_i(2, 0) + cond_i(2,
+                     1) + cond_i(2, 2)) /
+                    3.0;
+  }
+  std::ofstream vtk_ofs(vtk_name.str().c_str());
+  vtk_ofs.precision(8);
+  pmesh->PrintVTK_eta(vtk_ofs, local_cond);
+
   std::ostringstream vtk_name2;
   vtk_name2 << "solutions/"
             << "err" << std::setfill('0') << std::setw(2) << rank << "." << amr_
@@ -237,10 +270,10 @@ void Post::read_compute_survery_mode(std::string survery_mode_file,
   int source;
 
   std::ifstream mode_stream(survery_mode_file.c_str());
-  myassert(mode_stream.good());
+  assert(mode_stream.good());
 
   std::ofstream out_stream(output_file.c_str());
-  myassert(out_stream.good());
+  assert(out_stream.good());
 
   mode_stream >> n_data >> mode;
 
@@ -267,13 +300,13 @@ void Post::read_compute_survery_mode(std::string survery_mode_file,
                    << "\t" << k << "\t" << U << "\t" << rho << "\n";
       }
     }
-    myassert(n_data == surveys);
+    assert(n_data == surveys);
 
     if (para_handler->if_compute_E_J == "true") {
       std::string out_JU = "EJU.txt";
       // compute JU
       std::ofstream out(out_JU);
-      myassert(out.good());
+      assert(out.good());
       out.precision(8);
       out << "x"
           << "\t"

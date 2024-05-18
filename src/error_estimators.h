@@ -1,14 +1,15 @@
 
+/*
+ * @Description: This class implements a posteriori error estimation based on continuity of current density (Ren et al., 2018b). Ren, Z., QIU, L., Tang, J., ZHOU, F., CHEN, C., CHEN, H., HU, S., 2018b. 3D modeling of direct-current anisotropic resistivity using the adaptive finite-element method based on continuity of current density. Chinese Journal of Geophysics 61, 331–343.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ * Input: resistivity parameters, configuration parameters, mesh file, and the finite element solution.
+ * Output: the elemental posteriori error.
+ */
 
 // Copyright (c) 2023.
-// This file is part of the 3DDCAF program. 3DDCAF is free software, you can redistribute it and/or modify it under the terms of the BSD-3 license. See file LICENSE for details.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
 
-/*
- * @Description:
- Class for managing error estimator, called by class GOAFEM. For more
-information and source code availability, please visit https://github.com/luowen765/3DDCAF.
- * @Author: Lewen liu; Zhengguang liu; Hongbo Yao.
- */
 
 
 #ifndef _ERROR_ESTIMATORS_H
@@ -43,7 +44,7 @@ public:
 };
 
 // Error estimator based on the face-jumps of the normal component of the
-// current density nJ, sequential version is proposed by Zhengyong Ren et al.
+// current density nJ, sequential version is proposed by Zhengyong Ren et al.2018
 // Here we implement a parallel version and call it nJEstimator.
 class nJEstimator : public Estimator {
 public:

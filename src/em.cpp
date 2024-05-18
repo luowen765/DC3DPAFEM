@@ -1,4 +1,15 @@
 
+/*
+ * @Description: This .cpp file contains the actual implementations of some functions declared in the em.h header file.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ */
+
+
+// Copyright (c) 2023.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
+
+
 #include "em.h"
 
 // Print time in seconds(sec), minutes(min), and hours(hr)
@@ -21,8 +32,8 @@ double length_two_point(double *coord1, double *coord2) {
 
 double length_two_point(Vector &coord1, Vector &coord2) {
 
-  myassert(coord1.Size() == 3);
-  myassert(coord2.Size() == 3);
+  assert(coord1.Size() == 3);
+  assert(coord2.Size() == 3);
   double c1[3];
   double c2[3];
   for (int i = 0; i < 3; i++) {
@@ -175,7 +186,7 @@ void get_tetId_bdr(mfem::ParMesh *pmesh, int ElementNo, int &tet_id) {
     tet_id = e2->Attribute - 1;
     flag *= -1;
   }
-  myassert(flag == 1 && tet_id != -1);
+  assert(flag == 1 && tet_id != -1);
 }
 
 // Function to get the current process's memory usage (in bytes)
@@ -187,7 +198,7 @@ double GetCurrentMemoryUsage() {
 }
 
 bool equalDM(DenseMatrix a, DenseMatrix b) {
-  myassert(a.Size() == b.Size());
+  assert(a.Size() == b.Size());
   for (int i = 0; i < a.Size(); i++) {
     for (int j = 0; j < a.Size(); j++) {
       if (a(i, j) != b(i, j))
@@ -198,7 +209,7 @@ bool equalDM(DenseMatrix a, DenseMatrix b) {
 }
 
 bool equalVector(Vector a, Vector b) {
-  myassert(a.Size() == b.Size());
+  assert(a.Size() == b.Size());
   for (int i = 0; i < a.Size(); i++) {
     if (a(i) != b(i))
       return false;
@@ -207,9 +218,9 @@ bool equalVector(Vector a, Vector b) {
 }
 
 void Mult_DenseMatrix3(DenseMatrix &a, DenseMatrix &b, DenseMatrix &c) {
-  myassert(a.Size() == b.Size());
-  myassert(a.Size() == c.Size());
-  myassert(a.Size() == 3);
+  assert(a.Size() == b.Size());
+  assert(a.Size() == c.Size());
+  assert(a.Size() == 3);
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       for (int k = 0; k < 3; k++) {

@@ -1,14 +1,13 @@
 
-// Copyright (c) 2023.
-// This file is part of the 3DDCAF program. 3DDCAF is free software, you can redistribute it and/or modify it under the terms of the BSD-3 license. See file LICENSE for details.
-
 /*
- * @Description:
-  This class inherits MFEM's class in linalg/solvers.h. I do this for modify
-  the print part of CGSolver::Mult function. For more
-information and source code availability, please visit https://github.com/luowen765/3DDCAF.
- * @Author: Lewen liu; Zhengguang liu; Hongbo Yao.
+ * @Description: This class inherits MFEM's class in linalg/solvers.h. I do this for modify the print part of CGSolver::Mult function. 
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
  */
+
+// Copyright (c) 2023.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
+
 
 #ifndef _SOLVERSPLUS_h
 #define _SOLVERSPLUS_h

@@ -1,4 +1,14 @@
 
+/*
+ * @Description: This .cpp file contains the actual implementations of some functions declared in the mfem_coefficient.h header file.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ */
+
+
+// Copyright (c) 2023.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
+
 #include "mfem_coefficient.h"
 #include "em.h"
 

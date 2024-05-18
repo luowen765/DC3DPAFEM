@@ -1,0 +1,480 @@
+survey.input
+sigma.file
+0	--N_uniformRefine
+10	--maxit
+0.3	--beta
+5000000	--max_dofs
+2	--save_amr_mesh
+twolay.msh
+500	--pcg_maxit
+1e-07	--pcg_primal_tol
+0.0001	--pcg_dual_tol
+1	--pcg_print_level_tol
+0	--amg_print_level
+false	--if_compute_U_E_J
+*********************** AMR Loop 1**********************
+Number of tetrahedral elements: 42574
+Degrees of Freedom (DOFs): 8227
+start assemble primal problem
+The time of assembling PDE is 0.341856 s
+start solve primal problem
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.553651
+   Iteration :   2  ||r|| = 	0.153999
+   Iteration :   3  ||r|| = 	0.0505799
+   Iteration :   4  ||r|| = 	0.0188902
+   Iteration :   5  ||r|| = 	0.00626248
+   Iteration :   6  ||r|| = 	0.00186852
+   Iteration :   7  ||r|| = 	0.000638261
+   Iteration :   8  ||r|| = 	0.000216095
+   Iteration :   9  ||r|| = 	6.66753e-05
+   Iteration :  10  ||r|| = 	2.19262e-05
+   Iteration :  11  ||r|| = 	6.78407e-06
+   Iteration :  12  ||r|| = 	2.29315e-06
+   Iteration :  13  ||r|| = 	7.39305e-07
+   Iteration :  14  ||r|| = 	2.28472e-07
+   Iteration :  15  ||r|| = 	7.13452e-08
+Average reduction factor = 0.333855
+primal iterations: 15
+The time of solving PDE is 0.0304406 s
+The elapsed time of solving primal problem is 0.372343 s
+Post processing...
+The time cost of post_process is: 0.021254 s
+start assemble dual problem  
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.556753
+   Iteration :   2  ||r|| = 	0.139678
+   Iteration :   3  ||r|| = 	0.0403841
+   Iteration :   4  ||r|| = 	0.0128783
+   Iteration :   5  ||r|| = 	0.00466531
+   Iteration :   6  ||r|| = 	0.00157417
+   Iteration :   7  ||r|| = 	0.000470061
+   Iteration :   8  ||r|| = 	0.000170223
+   Iteration :   9  ||r|| = 	6.11089e-05
+Average reduction factor = 0.340243
+dual iterations: 9
+The elapsed time of solving dual problem is 0.0427858 s
+do not save any mesh!
+myid: 0 need max memory in this code: 	0.116837	
+myid: 0 need memory for solving PDE: 	0.0165291	
+*********************** AMR Loop 2**********************
+Number of tetrahedral elements: 44988
+Degrees of Freedom (DOFs): 8684
+start assemble primal problem
+The time of assembling PDE is 0.303936 s
+start solve primal problem
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.584421
+   Iteration :   2  ||r|| = 	0.155497
+   Iteration :   3  ||r|| = 	0.0557772
+   Iteration :   4  ||r|| = 	0.0211368
+   Iteration :   5  ||r|| = 	0.00750155
+   Iteration :   6  ||r|| = 	0.00247972
+   Iteration :   7  ||r|| = 	0.000794549
+   Iteration :   8  ||r|| = 	0.00026932
+   Iteration :   9  ||r|| = 	0.000100812
+   Iteration :  10  ||r|| = 	3.15497e-05
+   Iteration :  11  ||r|| = 	1.06674e-05
+   Iteration :  12  ||r|| = 	3.31018e-06
+   Iteration :  13  ||r|| = 	1.08502e-06
+   Iteration :  14  ||r|| = 	3.71697e-07
+   Iteration :  15  ||r|| = 	1.21051e-07
+   Iteration :  16  ||r|| = 	3.7396e-08
+Average reduction factor = 0.343401
+primal iterations: 16
+The time of solving PDE is 0.0332632 s
+The elapsed time of solving primal problem is 0.337232 s
+Post processing...
+The time cost of post_process is: 0.0217012 s
+start assemble dual problem  
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.603331
+   Iteration :   2  ||r|| = 	0.156808
+   Iteration :   3  ||r|| = 	0.0488839
+   Iteration :   4  ||r|| = 	0.0141847
+   Iteration :   5  ||r|| = 	0.00511658
+   Iteration :   6  ||r|| = 	0.00191489
+   Iteration :   7  ||r|| = 	0.000632564
+   Iteration :   8  ||r|| = 	0.000225236
+   Iteration :   9  ||r|| = 	9.02925e-05
+Average reduction factor = 0.355327
+dual iterations: 9
+The elapsed time of solving dual problem is 0.0460903 s
+do not save any mesh!
+*********************** AMR Loop 3**********************
+Number of tetrahedral elements: 53062
+Degrees of Freedom (DOFs): 10151
+start assemble primal problem
+The time of assembling PDE is 0.354871 s
+start solve primal problem
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.597316
+   Iteration :   2  ||r|| = 	0.15265
+   Iteration :   3  ||r|| = 	0.0543431
+   Iteration :   4  ||r|| = 	0.0188272
+   Iteration :   5  ||r|| = 	0.0059761
+   Iteration :   6  ||r|| = 	0.00192588
+   Iteration :   7  ||r|| = 	0.000627384
+   Iteration :   8  ||r|| = 	0.00021744
+   Iteration :   9  ||r|| = 	7.41924e-05
+   Iteration :  10  ||r|| = 	2.76491e-05
+   Iteration :  11  ||r|| = 	9.684e-06
+   Iteration :  12  ||r|| = 	3.18928e-06
+   Iteration :  13  ||r|| = 	1.01145e-06
+   Iteration :  14  ||r|| = 	3.42524e-07
+   Iteration :  15  ||r|| = 	1.09579e-07
+   Iteration :  16  ||r|| = 	3.57712e-08
+Average reduction factor = 0.342449
+primal iterations: 16
+The time of solving PDE is 0.0395711 s
+The elapsed time of solving primal problem is 0.394498 s
+Post processing...
+The time cost of post_process is: 0.0253465 s
+start assemble dual problem  
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.565174
+   Iteration :   2  ||r|| = 	0.148614
+   Iteration :   3  ||r|| = 	0.0523266
+   Iteration :   4  ||r|| = 	0.0178195
+   Iteration :   5  ||r|| = 	0.00653386
+   Iteration :   6  ||r|| = 	0.00243811
+   Iteration :   7  ||r|| = 	0.00072144
+   Iteration :   8  ||r|| = 	0.000223379
+   Iteration :   9  ||r|| = 	7.76467e-05
+Average reduction factor = 0.349419
+dual iterations: 9
+The elapsed time of solving dual problem is 0.0533393 s
+do not save any mesh!
+*********************** AMR Loop 4**********************
+Number of tetrahedral elements: 64589
+Degrees of Freedom (DOFs): 12233
+start assemble primal problem
+The time of assembling PDE is 0.427126 s
+start solve primal problem
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.661698
+   Iteration :   2  ||r|| = 	0.175695
+   Iteration :   3  ||r|| = 	0.065846
+   Iteration :   4  ||r|| = 	0.0246981
+   Iteration :   5  ||r|| = 	0.00820434
+   Iteration :   6  ||r|| = 	0.00244202
+   Iteration :   7  ||r|| = 	0.000768136
+   Iteration :   8  ||r|| = 	0.000271756
+   Iteration :   9  ||r|| = 	9.56679e-05
+   Iteration :  10  ||r|| = 	3.31361e-05
+   Iteration :  11  ||r|| = 	1.06002e-05
+   Iteration :  12  ||r|| = 	3.39302e-06
+   Iteration :  13  ||r|| = 	1.08385e-06
+   Iteration :  14  ||r|| = 	3.65739e-07
+   Iteration :  15  ||r|| = 	1.22098e-07
+   Iteration :  16  ||r|| = 	4.34055e-08
+Average reduction factor = 0.346614
+primal iterations: 16
+The time of solving PDE is 0.0476507 s
+The elapsed time of solving primal problem is 0.474805 s
+Post processing...
+The time cost of post_process is: 0.0313376 s
+start assemble dual problem  
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.587542
+   Iteration :   2  ||r|| = 	0.143465
+   Iteration :   3  ||r|| = 	0.0466265
+   Iteration :   4  ||r|| = 	0.0177331
+   Iteration :   5  ||r|| = 	0.00756767
+   Iteration :   6  ||r|| = 	0.00285807
+   Iteration :   7  ||r|| = 	0.000970395
+   Iteration :   8  ||r|| = 	0.000368106
+   Iteration :   9  ||r|| = 	0.000119647
+   Iteration :  10  ||r|| = 	3.91857e-05
+Average reduction factor = 0.362504
+dual iterations: 10
+The elapsed time of solving dual problem is 0.0672996 s
+do not save any mesh!
+*********************** AMR Loop 5**********************
+Number of tetrahedral elements: 86381
+Degrees of Freedom (DOFs): 16135
+start assemble primal problem
+The time of assembling PDE is 0.56089 s
+start solve primal problem
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.686773
+   Iteration :   2  ||r|| = 	0.197426
+   Iteration :   3  ||r|| = 	0.0738987
+   Iteration :   4  ||r|| = 	0.0299508
+   Iteration :   5  ||r|| = 	0.0102256
+   Iteration :   6  ||r|| = 	0.00350865
+   Iteration :   7  ||r|| = 	0.00116556
+   Iteration :   8  ||r|| = 	0.000399555
+   Iteration :   9  ||r|| = 	0.000145418
+   Iteration :  10  ||r|| = 	5.84265e-05
+   Iteration :  11  ||r|| = 	2.24741e-05
+   Iteration :  12  ||r|| = 	8.18979e-06
+   Iteration :  13  ||r|| = 	2.91489e-06
+   Iteration :  14  ||r|| = 	1.03578e-06
+   Iteration :  15  ||r|| = 	3.73157e-07
+   Iteration :  16  ||r|| = 	1.22334e-07
+   Iteration :  17  ||r|| = 	3.83864e-08
+Average reduction factor = 0.366248
+primal iterations: 17
+The time of solving PDE is 0.0663113 s
+The elapsed time of solving primal problem is 0.627308 s
+Post processing...
+The time cost of post_process is: 0.0408153 s
+start assemble dual problem  
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.542954
+   Iteration :   2  ||r|| = 	0.155753
+   Iteration :   3  ||r|| = 	0.05339
+   Iteration :   4  ||r|| = 	0.021351
+   Iteration :   5  ||r|| = 	0.00874817
+   Iteration :   6  ||r|| = 	0.00379642
+   Iteration :   7  ||r|| = 	0.00144207
+   Iteration :   8  ||r|| = 	0.000520154
+   Iteration :   9  ||r|| = 	0.000177141
+   Iteration :  10  ||r|| = 	5.92709e-05
+Average reduction factor = 0.377819
+dual iterations: 10
+The elapsed time of solving dual problem is 0.0894875 s
+do not save any mesh!
+*********************** AMR Loop 6**********************
+Number of tetrahedral elements: 161672
+Degrees of Freedom (DOFs): 29534
+start assemble primal problem
+The time of assembling PDE is 1.15818 s
+start solve primal problem
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.710593
+   Iteration :   2  ||r|| = 	0.195316
+   Iteration :   3  ||r|| = 	0.0767327
+   Iteration :   4  ||r|| = 	0.0320812
+   Iteration :   5  ||r|| = 	0.0113575
+   Iteration :   6  ||r|| = 	0.00429581
+   Iteration :   7  ||r|| = 	0.00162992
+   Iteration :   8  ||r|| = 	0.000641031
+   Iteration :   9  ||r|| = 	0.000244739
+   Iteration :  10  ||r|| = 	8.98974e-05
+   Iteration :  11  ||r|| = 	3.37089e-05
+   Iteration :  12  ||r|| = 	1.3158e-05
+   Iteration :  13  ||r|| = 	5.16233e-06
+   Iteration :  14  ||r|| = 	1.91706e-06
+   Iteration :  15  ||r|| = 	7.36758e-07
+   Iteration :  16  ||r|| = 	2.7599e-07
+   Iteration :  17  ||r|| = 	9.70759e-08
+Average reduction factor = 0.386792
+primal iterations: 17
+The time of solving PDE is 0.267717 s
+The elapsed time of solving primal problem is 1.42598 s
+Post processing...
+The time cost of post_process is: 0.162109 s
+start assemble dual problem  
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.576107
+   Iteration :   2  ||r|| = 	0.175094
+   Iteration :   3  ||r|| = 	0.0715958
+   Iteration :   4  ||r|| = 	0.0252971
+   Iteration :   5  ||r|| = 	0.00931502
+   Iteration :   6  ||r|| = 	0.0037859
+   Iteration :   7  ||r|| = 	0.00162921
+   Iteration :   8  ||r|| = 	0.000695523
+   Iteration :   9  ||r|| = 	0.000250645
+   Iteration :  10  ||r|| = 	9.611e-05
+Average reduction factor = 0.396531
+dual iterations: 10
+The elapsed time of solving dual problem is 0.362767 s
+do not save any mesh!
+*********************** AMR Loop 7**********************
+Number of tetrahedral elements: 193900
+Degrees of Freedom (DOFs): 35267
+start assemble primal problem
+The time of assembling PDE is 1.70383 s
+start solve primal problem
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.729163
+   Iteration :   2  ||r|| = 	0.206253
+   Iteration :   3  ||r|| = 	0.0759543
+   Iteration :   4  ||r|| = 	0.031221
+   Iteration :   5  ||r|| = 	0.0119538
+   Iteration :   6  ||r|| = 	0.00452901
+   Iteration :   7  ||r|| = 	0.00172969
+   Iteration :   8  ||r|| = 	0.000645547
+   Iteration :   9  ||r|| = 	0.00023633
+   Iteration :  10  ||r|| = 	8.51465e-05
+   Iteration :  11  ||r|| = 	3.04466e-05
+   Iteration :  12  ||r|| = 	1.12228e-05
+   Iteration :  13  ||r|| = 	4.49288e-06
+   Iteration :  14  ||r|| = 	1.82065e-06
+   Iteration :  15  ||r|| = 	6.9632e-07
+   Iteration :  16  ||r|| = 	2.74002e-07
+   Iteration :  17  ||r|| = 	1.1163e-07
+   Iteration :  18  ||r|| = 	4.34353e-08
+Average reduction factor = 0.389934
+primal iterations: 18
+The time of solving PDE is 0.368451 s
+The elapsed time of solving primal problem is 2.07238 s
+Post processing...
+The time cost of post_process is: 0.200679 s
+start assemble dual problem  
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.58087
+   Iteration :   2  ||r|| = 	0.178033
+   Iteration :   3  ||r|| = 	0.0714047
+   Iteration :   4  ||r|| = 	0.0273608
+   Iteration :   5  ||r|| = 	0.0101481
+   Iteration :   6  ||r|| = 	0.004328
+   Iteration :   7  ||r|| = 	0.00191368
+   Iteration :   8  ||r|| = 	0.000789588
+   Iteration :   9  ||r|| = 	0.000311472
+   Iteration :  10  ||r|| = 	0.000110226
+   Iteration :  11  ||r|| = 	3.80883e-05
+Average reduction factor = 0.39651
+dual iterations: 11
+The elapsed time of solving dual problem is 0.425398 s
+do not save any mesh!
+*********************** AMR Loop 8**********************
+Number of tetrahedral elements: 249898
+Degrees of Freedom (DOFs): 45236
+start assemble primal problem
+The time of assembling PDE is 1.86964 s
+start solve primal problem
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.721167
+   Iteration :   2  ||r|| = 	0.203141
+   Iteration :   3  ||r|| = 	0.0804639
+   Iteration :   4  ||r|| = 	0.0324649
+   Iteration :   5  ||r|| = 	0.0122328
+   Iteration :   6  ||r|| = 	0.00471709
+   Iteration :   7  ||r|| = 	0.00185608
+   Iteration :   8  ||r|| = 	0.000706131
+   Iteration :   9  ||r|| = 	0.000272366
+   Iteration :  10  ||r|| = 	0.000102464
+   Iteration :  11  ||r|| = 	4.00123e-05
+   Iteration :  12  ||r|| = 	1.62258e-05
+   Iteration :  13  ||r|| = 	6.39852e-06
+   Iteration :  14  ||r|| = 	2.54117e-06
+   Iteration :  15  ||r|| = 	9.99375e-07
+   Iteration :  16  ||r|| = 	3.77922e-07
+   Iteration :  17  ||r|| = 	1.44594e-07
+   Iteration :  18  ||r|| = 	5.61355e-08
+Average reduction factor = 0.39553
+primal iterations: 18
+The time of solving PDE is 1.59464 s
+The elapsed time of solving primal problem is 3.46434 s
+Post processing...
+The time cost of post_process is: 0.122615 s
+start assemble dual problem  
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.567885
+   Iteration :   2  ||r|| = 	0.183168
+   Iteration :   3  ||r|| = 	0.0755666
+   Iteration :   4  ||r|| = 	0.0281904
+   Iteration :   5  ||r|| = 	0.0104203
+   Iteration :   6  ||r|| = 	0.00432044
+   Iteration :   7  ||r|| = 	0.00188997
+   Iteration :   8  ||r|| = 	0.000847612
+   Iteration :   9  ||r|| = 	0.000290572
+   Iteration :  10  ||r|| = 	0.000108449
+   Iteration :  11  ||r|| = 	4.19632e-05
+Average reduction factor = 0.400018
+dual iterations: 11
+The elapsed time of solving dual problem is 0.315771 s
+do not save any mesh!
+*********************** AMR Loop 9**********************
+Number of tetrahedral elements: 363097
+Degrees of Freedom (DOFs): 65323
+start assemble primal problem
+The time of assembling PDE is 3.31016 s
+start solve primal problem
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.73742
+   Iteration :   2  ||r|| = 	0.209982
+   Iteration :   3  ||r|| = 	0.091368
+   Iteration :   4  ||r|| = 	0.0382741
+   Iteration :   5  ||r|| = 	0.014401
+   Iteration :   6  ||r|| = 	0.00546123
+   Iteration :   7  ||r|| = 	0.00226007
+   Iteration :   8  ||r|| = 	0.000943781
+   Iteration :   9  ||r|| = 	0.000385343
+   Iteration :  10  ||r|| = 	0.000153142
+   Iteration :  11  ||r|| = 	6.44885e-05
+   Iteration :  12  ||r|| = 	2.62045e-05
+   Iteration :  13  ||r|| = 	1.03158e-05
+   Iteration :  14  ||r|| = 	4.22002e-06
+   Iteration :  15  ||r|| = 	1.71579e-06
+   Iteration :  16  ||r|| = 	6.85107e-07
+   Iteration :  17  ||r|| = 	2.7383e-07
+   Iteration :  18  ||r|| = 	1.09793e-07
+   Iteration :  19  ||r|| = 	4.34344e-08
+Average reduction factor = 0.409749
+primal iterations: 19
+The time of solving PDE is 0.671006 s
+The elapsed time of solving primal problem is 3.98128 s
+Post processing...
+The time cost of post_process is: 0.17472 s
+start assemble dual problem  
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.608455
+   Iteration :   2  ||r|| = 	0.208056
+   Iteration :   3  ||r|| = 	0.0841708
+   Iteration :   4  ||r|| = 	0.0341449
+   Iteration :   5  ||r|| = 	0.0123353
+   Iteration :   6  ||r|| = 	0.00490849
+   Iteration :   7  ||r|| = 	0.00212756
+   Iteration :   8  ||r|| = 	0.000973686
+   Iteration :   9  ||r|| = 	0.000418226
+   Iteration :  10  ||r|| = 	0.000162997
+   Iteration :  11  ||r|| = 	6.06269e-05
+Average reduction factor = 0.413624
+dual iterations: 11
+The elapsed time of solving dual problem is 0.482546 s
+do not save any mesh!
+*********************** AMR Loop 10**********************
+Number of tetrahedral elements: 472894
+Degrees of Freedom (DOFs): 84864
+start assemble primal problem
+The time of assembling PDE is 5.11202 s
+start solve primal problem
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.754223
+   Iteration :   2  ||r|| = 	0.219725
+   Iteration :   3  ||r|| = 	0.097326
+   Iteration :   4  ||r|| = 	0.0413189
+   Iteration :   5  ||r|| = 	0.0156059
+   Iteration :   6  ||r|| = 	0.00610819
+   Iteration :   7  ||r|| = 	0.00251419
+   Iteration :   8  ||r|| = 	0.00100921
+   Iteration :   9  ||r|| = 	0.000395837
+   Iteration :  10  ||r|| = 	0.000156935
+   Iteration :  11  ||r|| = 	6.27659e-05
+   Iteration :  12  ||r|| = 	2.5727e-05
+   Iteration :  13  ||r|| = 	1.03719e-05
+   Iteration :  14  ||r|| = 	4.19698e-06
+   Iteration :  15  ||r|| = 	1.76272e-06
+   Iteration :  16  ||r|| = 	7.17381e-07
+   Iteration :  17  ||r|| = 	2.94122e-07
+   Iteration :  18  ||r|| = 	1.20268e-07
+   Iteration :  19  ||r|| = 	4.73202e-08
+Average reduction factor = 0.411601
+primal iterations: 19
+The time of solving PDE is 0.888806 s
+The elapsed time of solving primal problem is 6.00096 s
+Post processing...
+The time cost of post_process is: 0.49016 s
+start assemble dual problem  
+   Iteration :   0  ||r|| = 	1
+   Iteration :   1  ||r|| = 	0.638185
+   Iteration :   2  ||r|| = 	0.214621
+   Iteration :   3  ||r|| = 	0.0872168
+   Iteration :   4  ||r|| = 	0.035946
+   Iteration :   5  ||r|| = 	0.0133433
+   Iteration :   6  ||r|| = 	0.00553248
+   Iteration :   7  ||r|| = 	0.0024245
+   Iteration :   8  ||r|| = 	0.00110902
+   Iteration :   9  ||r|| = 	0.000470507
+   Iteration :  10  ||r|| = 	0.000190532
+   Iteration :  11  ||r|| = 	7.69968e-05
+Average reduction factor = 0.42271
+dual iterations: 11
+The elapsed time of solving dual problem is 0.754328 s
+do not save any mesh!
+Process unit: 1
+the total calculation Time is:	148.164 seconds

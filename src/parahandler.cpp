@@ -1,4 +1,14 @@
 
+/*
+ * @Description: This .cpp file contains the actual implementations of some functions declared in the parahandler.h header file.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ */
+
+
+// Copyright (c) 2023.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
+
 #include "parahandler.h"
 #include "em.h"
 
@@ -45,13 +55,13 @@ void ParaHandler::skip_comments(std::istream &in,
 
 void ParaHandler::read_model_info(char *model_file) {
   std::ifstream in_stream(model_file);
-  myassert(in_stream.good());
-  int para_lines = 18; // number of parameters' lines
+  assert(in_stream.good());
+  int para_lines = 14; // number of parameters' lines
   std::vector<std::string> para_str_vec;
   skip_comments(in_stream, para_str_vec);
   // std::cout << "para_str_vec.size(): " << para_str_vec.size() << std::endl;
   // std::cout << " para_lines: " << para_lines << std::endl;
-  myassert(para_str_vec.size() == para_lines);
+  assert(para_str_vec.size() == para_lines);
   in_stream.close();
   std::stringstream ss;
 
@@ -68,82 +78,62 @@ void ParaHandler::read_model_info(char *model_file) {
   ss << para_str_vec[2];
   ss >> N_uniformRefine;
   ss.clear();
-  myassert(N_uniformRefine >= 0);
+  assert(N_uniformRefine >= 0);
 
   ss << para_str_vec[3];
   ss >> maxit;
   ss.clear();
-  myassert(maxit >= 1);
+  assert(maxit >= 1);
 
   ss << para_str_vec[4];
   ss >> beta;
   ss.clear();
-  myassert(beta >= 0.0 && beta <= 1);
+  assert(beta >= 0.0 && beta <= 1);
 
   ss << para_str_vec[5];
   ss >> max_dofs;
   ss.clear();
-  myassert(max_dofs >= 10);
-
-  ss << para_str_vec[6];
-  ss >> linear_solver;
-  ss.clear();
-  myassert(linear_solver == "amg");
+  assert(max_dofs >= 10);
 
   // Mesh parameters
-  ss << para_str_vec[7];
+  ss << para_str_vec[6];
   ss >> save_amr_mesh;
   ss.clear();
 
-  ss << para_str_vec[8];
+  ss << para_str_vec[7];
   ss >> mesh_file;
   ss.clear();
 
-  ss << para_str_vec[9];
-  ss >> find_points_by;
-  ss.clear();
-  myassert(find_points_by == "FindPoints");
-
-  ss << para_str_vec[10];
+  ss << para_str_vec[8];
   ss >> pcg_maxit;
   ss.clear();
-  myassert(pcg_maxit > 5);
+  assert(pcg_maxit > 5);
 
-  ss << para_str_vec[11];
+  ss << para_str_vec[9];
   ss >> pcg_primal_tol;
   ss.clear();
-  myassert(pcg_primal_tol > 0 && pcg_primal_tol < 1);
+  assert(pcg_primal_tol > 0 && pcg_primal_tol < 1);
 
-  ss << para_str_vec[12];
+  ss << para_str_vec[10];
   ss >> pcg_dual_tol;
   ss.clear();
-  myassert(pcg_dual_tol > 0 && pcg_dual_tol < 1 &&
+  assert(pcg_dual_tol > 0 && pcg_dual_tol < 1 &&
            pcg_dual_tol >= pcg_primal_tol);
 
-  ss << para_str_vec[13];
+  ss << para_str_vec[11];
   ss >> pcg_print_level;
   ss.clear();
-  myassert(pcg_print_level >= 0 && pcg_print_level < 10);
+  assert(pcg_print_level >= 0 && pcg_print_level < 10);
 
-  ss << para_str_vec[14];
+  ss << para_str_vec[12];
   ss >> amg_print_level;
   ss.clear();
-  myassert(amg_print_level >= 0 && amg_print_level < 10);
+  assert(amg_print_level >= 0 && amg_print_level < 10);
 
-  ss << para_str_vec[15];
-  ss >> if_solve_dual;
-  ss.clear();
-  myassert(if_solve_dual == "true" || if_solve_dual == "false");
-
-  ss << para_str_vec[16];
-  ss >> error_esti_way;
-  ss.clear();
-  myassert(error_esti_way == "jn");
-
-  ss << para_str_vec[17];
+  ss << para_str_vec[13];
   ss >> if_compute_E_J;
   ss.clear();
-  myassert(if_compute_E_J == "true" || if_compute_E_J == "false");
+  assert(if_compute_E_J == "true" || if_compute_E_J == "false");
 
   int myid;
   MPI_Comm_rank(MPI_COMM_WORLD, &myid);
@@ -154,13 +144,13 @@ void ParaHandler::read_model_info(char *model_file) {
   if (myid == 0) {
     // check survey_input file
     std::ifstream survey_in(survey_input);
-    myassert(survey_in.good());
+    assert(survey_in.good());
     std::ofstream survey_out(sorted_survey);
-    myassert(survey_out.good());
+    assert(survey_out.good());
     survey_in >> n_data // nunmber of measurments
         >> mode;        // measurment mode
-    myassert(n_data > 0);
-    myassert(mode == 11 || mode == 12 || mode == 21 || mode == 22 ||
+    assert(n_data > 0);
+    assert(mode == 11 || mode == 12 || mode == 21 || mode == 22 ||
              mode == 41);
     if (mode == 11) { // pole-pole configuration
       std::vector<std::vector<double>> lines;
@@ -175,7 +165,7 @@ void ParaHandler::read_model_info(char *model_file) {
         }
         lines.push_back(templine);
       }
-      myassert(lines.size() == n_data);
+      assert(lines.size() == n_data);
       std::sort(lines.begin(), lines.end(), cmp2);
       // generate sorted survey file
       survey_out << n_data << "\t" << mode << "\n";
@@ -195,7 +185,7 @@ void ParaHandler::read_model_info(char *model_file) {
   MPI_Barrier(MPI_COMM_WORLD);
   // get sources and potentions by sorted survey file
   std::ifstream survey_in_stream(sorted_survey);
-  myassert(survey_in_stream.good());
+  assert(survey_in_stream.good());
   survey_in_stream >> n_data // nunmber of measurments
       >> mode;               // measurment mode
   Vertex last_ts(-1, -1, -1);
@@ -225,7 +215,7 @@ void ParaHandler::read_model_info(char *model_file) {
           sources.push_back(ts);
           sites.push_back(temp_sites);
           temp_sites.clear();
-          temp_sites.push_back(tm); 
+          temp_sites.push_back(tm);
         }
       }
     } else {
@@ -235,11 +225,11 @@ void ParaHandler::read_model_info(char *model_file) {
   }
   survey_in_stream.close();
   source_number = sources.size();
-  myassert(source_number > 0);
+  assert(source_number > 0);
 
   // Read conductivity model
   std::ifstream cond_in_stream(model_parameters_file.c_str());
-  myassert(cond_in_stream.good());
+  assert(cond_in_stream.good());
   cond_in_stream >> n_regions;
   for (int i = 0; i < n_regions; i++) {
     int marker;
@@ -252,12 +242,11 @@ void ParaHandler::read_model_info(char *model_file) {
         angle[0] >> angle[1] >> angle[2]; // >> permeability;
     marker_vec.push_back(marker);
     region2conductivity[marker] = cal_conductivity(main_cond, angle);
-
   }
   cond_in_stream.close();
   // check mesh file stream
   std::ifstream msh_stream(mesh_file);
-  myassert(msh_stream.good());
+  assert(msh_stream.good());
   msh_stream.close();
 }
 
@@ -310,7 +299,7 @@ DenseMatrix ParaHandler::cal_conductivity(Vector &main_cond, Vector &_angle) {
   Mult_DenseMatrix3(R_1, R_2, temp1);
   Mult_DenseMatrix3(temp1, R_3, R);
 
-  DenseMatrix R_sigma_RT(3), temp2(3),temp3(3);
+  DenseMatrix R_sigma_RT(3), temp2(3), temp3(3);
   R_sigma_RT = 0.0;
   temp2 = 0.0;
   temp3 = R;
@@ -321,15 +310,14 @@ DenseMatrix ParaHandler::cal_conductivity(Vector &main_cond, Vector &_angle) {
 }
 
 DenseMatrix ParaHandler::get_elem_conductivity(int marker) {
-  myassert(!region2conductivity.empty());
+  assert(!region2conductivity.empty());
   std::map<int, DenseMatrix>::iterator it = region2conductivity.find(marker);
   if (it == region2conductivity.end()) {
     std::cout << "not found marker: " << marker << std::endl;
   }
-  myassert(it != region2conductivity.end());
+  assert(it != region2conductivity.end());
   return (*it).second;
 }
-
 
 Vector ParaHandler::get_sources_center() {
   Vector gpoint(3);
@@ -352,8 +340,6 @@ void ParaHandler::preProcess() {
   remove_duplicate_vertex(s_plus_m);
 }
 
-
-
 void ParaHandler::find_point_tets(ParMesh *pmesh, std::vector<Vertex> &points,
                                   Array<int> &find_tets,
                                   std::string find_points_by) {
@@ -373,29 +359,25 @@ void ParaHandler::find_point_tets(ParMesh *pmesh, std::vector<Vertex> &points,
     if (tid == -1) {
       std::cout << "measurements point not found! please check your parameters";
     } else {
-      find_tets.Append(tid); 
+      find_tets.Append(tid);
     }
   }
-  myassert(find_tets.Size() == npts);
+  assert(find_tets.Size() == npts);
 }
 
 void ParaHandler::printForwardParameters() {
   std::cout << survey_input << std::endl;
-  std::cout << model_parameters_file<< std::endl;
+  std::cout << model_parameters_file << std::endl;
   std::cout << N_uniformRefine << "\t--N_uniformRefine" << std::endl;
   std::cout << maxit << "\t--maxit" << std::endl;
   std::cout << beta << "\t--beta" << std::endl;
   std::cout << max_dofs << "\t--max_dofs" << std::endl;
-  std::cout << linear_solver << "\t--linear_solver" << std::endl;
   std::cout << save_amr_mesh << "\t--save_amr_mesh" << std::endl;
-  std::cout << mesh_file<< std::endl;
-  std::cout << find_points_by << "\t--find_points_by" << std::endl;
+  std::cout << mesh_file << std::endl;
   std::cout << pcg_maxit << "\t--pcg_maxit" << std::endl;
   std::cout << pcg_primal_tol << "\t--pcg_primal_tol" << std::endl;
   std::cout << pcg_dual_tol << "\t--pcg_dual_tol" << std::endl;
   std::cout << pcg_print_level << "\t--pcg_print_level_tol" << std::endl;
   std::cout << amg_print_level << "\t--amg_print_level" << std::endl;
-  std::cout << if_solve_dual << "\t--if_solve_dual" << std::endl;
-  std::cout << error_esti_way << "\t--error_esti_way" << std::endl;
   std::cout << if_compute_E_J << "\t--if_compute_U_E_J" << std::endl;
 }

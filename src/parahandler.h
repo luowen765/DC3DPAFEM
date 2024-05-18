@@ -1,14 +1,13 @@
 
+/*
+ * @Description: This class is used to read various parameter settings from a configuration file.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ */
 
 // Copyright (c) 2023.
-// This file is part of the 3DDCAF program. 3DDCAF is free software, you can redistribute it and/or modify it under the terms of the BSD-3 license. See file LICENSE for details.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details.  
 
-/*
- * @Description:
- A class for managing input information. For more
-information and source code availability, please visit https://github.com/luowen765/3DDCAF.
- * @Author: Lewen liu; Zhengguang liu; Hongbo Yao.
- */
 
 #ifndef _PARAHANDLER_H
 #define _PARAHANDLER_H
@@ -33,7 +32,6 @@ public:
   std::string survey_input;
   std::string sorted_survey;
   std::string model_parameters_file;
-  std::string marker_type; 
   int n_regions;          
   std::vector<int> marker_vec; 
   std::map<int, DenseMatrix> region2conductivity; 
@@ -43,18 +41,14 @@ public:
   int maxit;               // max AMR iterations
   long int max_dofs;       // max dofs
   double beta;             // marking parameter
-  std::string linear_solver;
-  std::string error_esti_way;
   // Mesh parameters
   int save_amr_mesh;
   std::string mesh_file;
-  std::string find_points_by;
   int pcg_maxit;
   double pcg_primal_tol;
   double pcg_dual_tol;
   int pcg_print_level;
   int amg_print_level;
-  std::string if_solve_dual;
   std::string if_compute_E_J;
 
 public:
@@ -73,8 +67,7 @@ public:
   DenseMatrix get_elem_conductivity(int marker);
   // get center coordinates of sources
   Vector get_sources_center();
-  // remove duplicated points of sources and measurements, used for
-  // refine_local_tets and dual problem
+
   void preProcess();
   void find_point_tets(ParMesh *pmesh, std::vector<Vertex> &points,
                        Array<int> &find_tets, std::string find_points_by);

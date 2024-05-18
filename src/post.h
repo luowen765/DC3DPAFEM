@@ -1,13 +1,15 @@
 
-// Copyright (c) 2023.
-// This file is part of the 3DDCAF program. 3DDCAF is free software, you can redistribute it and/or modify it under the terms of the BSD-3 license. See file LICENSE for details.
-
 /*
- * @Description:
-  This class does post-processing for the solutions of FEM. The total potential can be obtained by adding the primary singular potential. Then apparent resistivity can be computed on different configrations. For more
-information and source code availability, please visit https://github.com/luowen765/3DDCAF.
- * @Author: Lewen liu; Zhengguang liu; Hongbo Yao.
+ * @Description: This class is used for post-processing the solution of FEM, converting the potential into apparent resistivity.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ * Input: configuration settings, FEM parameters, and a mesh file.
+ * Output: Apparent resistivity.
  */
+
+// Copyright (c) 2023.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
+
 
 #ifndef _POST_H
 #define _POST_H

@@ -1,17 +1,19 @@
 
+/*
+ * @Description: This class implements a framework for the goal-oriented finite element method, including finite element discretization, assembly and solving of linear equation systems, a posteriori error estimation, and mesh refinement. 
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ * Input: Resistivity parameters, configuration settings, and a mesh file.
+ * Output: Solution to the finite element linear equation systems.
+ */
+
+
+
+
 
 // Copyright (c) 2023.
-// This file is part of the 3DDCAF program. 3DDCAF is free software, you can
-// redistribute it and/or modify it under the terms of the BSD-3 license. See
-// file LICENSE for details.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
 
-/*
- * @Description:
-  This class is parallel adaptive finite-element solver. For more
-information and source code availability, please visit
-https://github.com/luowen765/3DDCAF.
- * @Author: Lewen liu; Zhengguang liu; Hongbo Yao.
- */
 
 #ifndef _GOAFEM_H
 #define _GOAFEM_H
@@ -115,7 +117,7 @@ public:
   void update();
   void set_sigma0();
   // Estimating error
-  void error_estimating(int iter);
+  void error_estimating();
   void refine_mesh();
 };
 #endif // _GOAFEM_H

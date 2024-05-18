@@ -1,17 +1,20 @@
+/*
+ @Description: This file is the main program of the package DC3DPAFEM, serving
+ as the overall implementation framework for the algorithm. It includes reading
+ input files, domain decomposition, solving finite element linear equation
+ systems, and the mesh adaptation process. For more details, please refer to the
+ article: _A scalable parallel finite-element algorithm using the algebraic
+ multigrid solver for 3-D direct current resistivity modeling in anisotropic
+ media_.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19
+ */
 
 // Copyright (c) 2023.
-// This file is part of the 3DDCAF program. 3DDCAF is free software, you can
-// redistribute it and/or modify it under the terms of the BSD-3 license. See
-// file LICENSE for details.
-
-/*
- * @Description:
-  This class inherits MFEM's class in linalg/solvers.h. I do this for modify
-  the print part of CGSolver::Mult function. For more
-information and source code availability, please visit
-https://github.com/luowen765/3DDCAF.
- * @Author: Lewen liu; Zhengguang liu; Hongbo Yao.
- */
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with
+// source code available in https://github.com/luowen765/DC3DPAFEM. You can
+// redistribute it or modify it under the terms of the BSD-3 license. See file
+// LICENSE for details.
 
 #include "em.h"
 #include "goafem.h"
@@ -26,7 +29,7 @@ https://github.com/luowen765/3DDCAF.
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <sys/stat.h> 
+#include <sys/stat.h>
 #include <vector>
 
 using namespace mfem;
@@ -132,7 +135,6 @@ int main(int argc, char *argv[]) {
     if (amr == "1" && uniN != 0) {
       post.main_post_process(myid, &para_handler,
                              "uni" + std::to_string(uniN) + "-" +
-                                 para_handler.linear_solver + "-" +
                                  std::to_string(n_procs),
                              goafem->sigma0, goafem->cond_att);
     } else {
@@ -140,11 +142,10 @@ int main(int argc, char *argv[]) {
                              goafem->cond_att);
     }
     Meshplus pmeshplus = Meshplus(pmesh); // used to print mesh result
-    if (para_handler.if_solve_dual == "true") {
-      goafem->solve_dual_problem();
-    }
 
-    goafem->error_estimating(iter);
+    goafem->solve_dual_problem();
+
+    goafem->error_estimating();
     Vector relative_eta = goafem->local_err;
     double local_max_err = relative_eta.Max();
     double global_max_err;

@@ -1,4 +1,14 @@
 
+/*
+ * @Description: This .cpp file contains the actual implementations of some functions declared in the goafem.h header file.
+ * @Author: Lewen liu, Zhengguang liu, Hongbo Yao and Jingtian Tang.
+ * @Date: 2023-12-19 
+ */
+
+
+// Copyright (c) 2023.
+// This file is part of the DC3DPAFEM program. DC3DPAFEM is free software with source code available in https://github.com/luowen765/DC3DPAFEM. You can redistribute it or modify it under the terms of the BSD-3 license. See file LICENSE for details. 
+
 
 #include "goafem.h"
 #include "em.h"
@@ -59,8 +69,7 @@ void GOAFEM::initialize() {
   local_sources_tets.DeleteAll();
   // find sources
   para_handler->find_point_tets(pmesh, para_handler->sources,
-                                local_sources_tets,
-                                para_handler->find_points_by);
+                                local_sources_tets, "FindPoints");
   this->set_sigma0();
   // Parallel  finite-element space
   int dim = pmesh->Dimension(); // The dimention of model.
@@ -196,10 +205,10 @@ void GOAFEM::solve_dual_problem() {
               << " \n";
   local_dual_tets.DeleteAll();
   para_handler->find_point_tets(pmesh, para_handler->s_plus_m, local_dual_tets,
-                                para_handler->find_points_by);
+                                "FindPoints");
   assemble_dual_linearform();
   Array<int> ess_tdof_list(0);
-  myassert(a != NULL);
+  assert(a != NULL);
   // Linear system of dual problem aw=l
   a->FormLinearSystem(ess_tdof_list, *w, *l, A, W, L);
 
@@ -264,18 +273,17 @@ void GOAFEM::solve_with_pcg(OperatorHandle &A, Vector &X, Vector &B,
   }
 
   Solver *prec = NULL;
-
   if (pre == "amg") {
     HypreBoomerAMG *amg = new HypreBoomerAMG;
     amg->SetPrintLevel(pre_print_level);
     prec = amg;
   } else {
     std::cout << "Unsupported input linear solver: "
-              << para_handler->linear_solver << "\n";
+              << "\n";
     std::abort();
   }
-
   SolversPlus cg(MPI_COMM_WORLD);
+  // SolversPlus cg;
   cg.SetMaxIter(maxit);
   cg.SetRelTol(tol);
   cg.SetPrintLevel(print_level);
@@ -286,7 +294,6 @@ void GOAFEM::solve_with_pcg(OperatorHandle &A, Vector &X, Vector &B,
   cg.SetOperator(*A);
   tempMemory = GetCurrentMemoryUsage();
   memoryUsed.push_back(tempMemory);
-
   cg.Mult(B, X);
   int myid;
   MPI_Comm_rank(MPI_COMM_WORLD, &myid);
@@ -298,10 +305,9 @@ void GOAFEM::solve_with_pcg(OperatorHandle &A, Vector &X, Vector &B,
 
 void GOAFEM::solve(OperatorHandle &A, std::vector<Vector> &X,
                    std::vector<Vector> &B, std::string problem_type) {
-  std::string linear_solver = para_handler->linear_solver;
   for (int i = 0; i < B.size(); i++) {
-    solve_with_pcg(A, X[i], B[i], linear_solver, para_handler->pcg_maxit,
-                   problem_type, para_handler->pcg_print_level,
+    solve_with_pcg(A, X[i], B[i], "amg", para_handler->pcg_maxit, problem_type,
+                   para_handler->pcg_print_level,
                    para_handler->amg_print_level);
   }
 }
@@ -332,7 +338,7 @@ void GOAFEM::set_sigma0() {
   int *msg_tets;
 
   int ns = local_sources_tets.Size();
-  myassert(ns == para_handler->source_number);
+  assert(ns == para_handler->source_number);
   global_initial_sources_tets.SetSize(ns);
 
   if (myid == 0) {
@@ -399,14 +405,11 @@ void GOAFEM::set_sigma0() {
   }
 }
 
-void GOAFEM::error_estimating(int iter) {
+void GOAFEM::error_estimating() {
   // Error estiamating
-  if (para_handler->error_esti_way == "jn") {
-    nJEstimator nJ_estimator(para_handler, pmesh, pfes, up, w, cond_att);
-    nJ_estimator.get_error_estimates(local_err);
-  } else {
-    std::cout << "unsupported estimator Temporarily!" << std::endl;
-  }
+
+  nJEstimator nJ_estimator(para_handler, pmesh, pfes, up, w, cond_att);
+  nJ_estimator.get_error_estimates(local_err);
 }
 
 void GOAFEM::refine_mesh() {
