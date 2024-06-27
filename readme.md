@@ -1,7 +1,7 @@
 
 # DC3DPAFEM user guide
 
-DC3DPAFEM is a parallel adaptive finite-element algorithm for 3D direct current resistivity anisotropic forward. Details about the theory will be found in the article: _A scalable parallel finite-element algorithm using the algebraic multigrid solver for 3-D direct current resistivity modeling in anisotropic media_ currently in review.
+DC3DPAFEM is a parallel adaptive finite-element algorithm for 3D direct current resistivity anisotropic forward. Details about the theory will be found in the article: _DC3DPAFEM: an efficient and accurate 3-D direct current resistivity anisotropic forward modeling software for complex geological settings_ currently in review.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ The Intel's **oneAPI toolkit** need to be installed including Base Toolkit and H
 
 This DC3DPAFEM is open source and freely available. It contains 4 folders:
 
-* **contrib**: this folder shall contain needed third-party libraries. The open source finite element library MFEM, partitioning finite element meshes program METIS, and high performance preconditioners and solvers library HYPRE were used in this code. The MFEM can be available on the web: https://github.com/mfem/mfem, with the METIS available in https://github.com/KarypisLab/METIS , ans with the HYPRE available in https://github.com/hypre-space/hypre. Tested libraries and corresponding versions are __hypre-2.19.0__, __metis-5.1.0__, and __mfem-4.5__.You need to download these libraries and install them in sequence by *./install_mfem.sh*, in which:
+* **contrib**: this folder shall contain needed third-party libraries. The open source finite element library MFEM, partitioning finite element meshes program METIS, and high performance preconditioners and solvers library HYPRE were used in this code. The MFEM can be available on the web: https://github.com/mfem/mfem, with the METIS available in https://github.com/KarypisLab/METIS , ans with the HYPRE available in https://github.com/hypre-space/hypre. Tested libraries and corresponding versions are __hypre-2.19.0__, __metis-5.1.0__, and __mfem-4.5__.You can install the required packages in sequence by *./install_mfem.sh*, in which:
   * *Installation for HYPRE*
     ```
     tar -zxvf hypre-2.19.0.tar.gz
@@ -54,7 +54,7 @@ This DC3DPAFEM is open source and freely available. It contains 4 folders:
     The former is used to compile the program to produce the executable file DC3D. The latter is used to run the program.
 
 - **src**: this folder contains all sources file (including .cpp and .h).
-Inside this file all source files have introductory comments giving the authors name, date of completion and IO etc.
+Inside the file all source files have introductory comments giving the authors name, date of completion and IO etc.
 - _DC3D.cpp_
   * This file is the main program of the package DC3DPAFEM, serving
  as the overall implementation framework for the algorithm. It includes reading
